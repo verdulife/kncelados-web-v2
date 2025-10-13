@@ -1,0 +1,28 @@
+{
+  "background_color": "#060d14",
+  "theme_color": "#060d14",
+  "name": "Kncelados | Un podcast de tonterías varias",
+  "short_name": "Kncelados",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "mobile.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,22 +1,146 @@
+---
+import Animation from "@/components/Animation.astro";
+import "@/styles/global.css";
+import { ClientRouter } from "astro:transitions";
+
+/* import Navbar from "@/components/Navbar.astro";
+import Footer from "@/components/Footer.astro";
+import KeepScrolling from "@/components/KeepScrolling.astro"; */
+
+const { title, description, image } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1.0, viewport-fit=cover"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="manifest" href="/manifest.json" crossorigin="use-credentials" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Kncelados" />
+    <link rel="apple-touch-icon" type="image/png" href="/mobile.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ClientRouter />
+    <meta name="author" content="verdu | verdu@live.com" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:url" content="https://www.kncelados.com" />
+    <meta
+      property="og:image"
+      content={image || "https://www.kncelados.com/logo-512.jpg"}
+    />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:site" content="@kncelados" />
+    <meta name="twitter:description" content={description} />
+    <meta
+      name="twitter:image"
+      content={image || "https://www.kncelados.com/card.jpg"}
+    />
+    <meta name="twitter:image:alt" content={title} />
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "http://schema.org/",
+        "@type": "PerformingGroup",
+        "name": "Kncelados",
+        "logo": "https://www.kncelados.com/mobile.png",
+        "url": "https://www.kncelados.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Barcelona",
+          "addressCountry": "Spain"
+        },
+        "sameAs": [
+          "https://www.youtube.com/@kncelados",
+          "https://www.instagram.com/kncelados",
+          "https://www.tiktok.com/@kncelados",
+          "https://open.spotify.com/show/5bDQAbJUSdfHYdii8A8eX0",
+          "https://t.me/kncelados",
+          "https://www.patreon.com/kncelados"
+        ]
+      }
+    </script>
+
+    <script
+      type="text/partytown"
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2074822779325165"
+      crossorigin="anonymous"
+      is:inline></script>
+
+    <!-- <script>
+      import "@justinribeiro/lite-youtube";
+    </script> -->
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-486FS251TB"
+      is:inline></script><script type="text/partytown" is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-486FS251TB");
+    </script></head
+  >
+
+  <!-- Google tag (gtag.js) -->
+
+  <body
+    class="bg-knc-dark flex min-h-svh flex-col overflow-x-clip bg-[url(/outline-logo.svg)] [background-size:5%_5%] bg-fixed bg-center overflow-y-clip bg-no-repeat text-gray-50"
+  >
+    <Animation />
+    <div
+      id="container"
+      class="flex w-full flex-1 flex-col overflow-clip opacity-0"
+    >
+      <!-- <Navbar /> -->
+      <slot />
+      <!-- <KeepScrolling /> -->
+      <!-- <Footer /> -->
+    </div>
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<script>
+  /* import { gsap } from "gsap";
+
+  function startAnimation() {
+    gsap.to("body", {
+      overflowY: "auto",
+      delay: 0.5,
+      duration: 1,
+    });
+
+    gsap.to("#container", {
+      opacity: 1,
+      duration: 2,
+      ease: "power2.out",
+      delay: 0.5,
+    });
+
+    gsap.to("#hero-bg", {
+      scale: 1.25,
+      opacity: 1,
+      duration: 1,
+      ease: "power2.out",
+      delay: 0.5,
+    });
+  }
+
+  window.addEventListener("load", startAnimation); */
+  const container = document.querySelector("#container") as HTMLElement;
+  setTimeout(() => {
+    container.classList.add("opacity-100");
+  }, 2000);
+</script>
