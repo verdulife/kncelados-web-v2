@@ -4,6 +4,11 @@ import VideoSlider from "@/components/VideoSlider.astro";
 import Layout from "@/layouts/Layout.astro";
 
 import { lastEpisode, seasons, extras } from "@/lib/utils";
+import { getCollection } from "astro:content";
+
+const episodes = await getCollection("episodes");
+
+console.log(episodes);
 ---
 
 <Layout
