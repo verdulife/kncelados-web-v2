@@ -1,0 +1,71 @@
+---
+import { generateSlug } from "@/lib/utils";
+import Play from "@/assets/Play.astro";
+
+const { data } = Astro.props;
+const { title, image, id } = data;
+const slug = generateSlug(title);
+---
+
+<article
+  class="card relative aspect-video w-72 shrink-0 snap-start transition-all duration-300 lg:w-96 lg:hover:w-120"
+>
+  <a href={`/podcast/${slug}`}>
+    <picture>
+      <img src={image} alt={title} loading="lazy" decoding="async" />
+    </picture>
+
+    <h3 class="sr-only">{title}</h3>
+  </a>
+
+  <span
+    class="fast-play pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-500"
+  >
+    <a
+      href={`/player/${id}`}
+      class="rounded-full bg-knc-dark p-4 text-knc-red transition-transform hover:scale-110"
+    >
+      <Play class="size-12" />
+    </a>
+  </span>
+</article>
+
+<style>
+  .over {
+    opacity: 1;
+
+    a {
+      pointer-events: all;
+    }
+  }
+</style>
+
+<script>
+  function init_play() {
+    const cards = document.querySelectorAll(".card");
+
+    if (!cards) return;
+
+    cards.forEach((card) => {
+      const fastPlay = card.querySelector(".fast-play");
+      if (!fastPlay) return;
+
+      let cancel: NodeJS.Timeout;
+
+      card.addEventListener("mouseenter", () => {
+        cancel = setTimeout(() => {
+          fastPlay.classList.add("over");
+        }, 150);
+      });
+
+      card.addEventListener("mouseleave", () => {
+        fastPlay.classList.remove("over");
+
+        clearTimeout(cancel);
+      });
+    });
+  }
+
+  init_play();
+  document.addEventListener("astro:after-swap", init_play);
+</script>

@@ -1,0 +1,9 @@
+---
+import { links } from "@/lib/links";
+
+const { slug } = Astro.params;
+const link = links.find((link) => link.slug === slug);
+
+if (!link) return Astro.redirect("/");
+return Astro.redirect(link.url);
+---

@@ -12,8 +12,19 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.14",
-    "astro": "^5.14.4",
-    "tailwindcss": "^4.1.14"
+    "@astrojs/partytown": "2.1.4",
+    "@astrojs/sitemap": "3.6.0",
+    "@fontsource-variable/inter": "5.2.8",
+    "@tailwindcss/vite": "4.1.14",
+    "astro": "5.14.4",
+    "core-js": "3.46.0",
+    "gsap": "3.13.0",
+    "slugify": "1.6.6",
+    "tailwindcss": "4.1.14"
+  },
+  "devDependencies": {
+    "@types/core-js": "2.5.8",
+    "cohere-ai": "7.19.0",
+    "open-graph-scraper": "6.10.0"
   }
 }

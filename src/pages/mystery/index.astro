@@ -1,0 +1,104 @@
+---
+import "@fontsource-variable/inter";
+import Layout from "@/layouts/Layout.astro";
+import { videos } from "mystery/mystery";
+---
+
+<Fragment>
+  <meta name="robots" content="noindex" />
+</Fragment>
+
+<Layout title="Mystery">
+  <section
+    class="container mx-auto flex flex-1 flex-col items-center gap-10 px-4 py-48 text-center"
+  >
+    <h1 class="font-title text-2xl">Índice de soluciones de Mystery</h1>
+
+    <search class="flex w-full flex-col items-center">
+      <form
+        id="search-form"
+        class="bg-knc-blue flex w-full max-w-lg items-center gap-2 rounded-lg border border-neutral-50/10 p-2"
+      >
+        <input
+          type="search"
+          placeholder="Buscar por título"
+          class="bg-knc-blue w-full p-2 text-center outline-0"
+        />
+      </form>
+    </search>
+
+    <ul
+      id="items-wrapper"
+      class="flex w-full max-w-xl flex-col items-center text-center"
+    >
+      {
+        videos.map((video) => (
+          <>
+            <li id={`id_${video.slug}`} class="search-item w-full">
+              <a
+                rel="nofollow"
+                href={`/mystery/${video.slug}`}
+                class="hover:via-knc-blue flex w-full flex-col border-b border-neutral-500 p-4 text-lg transition-colors hover:bg-linear-to-r hover:from-transparent hover:to-transparent"
+              >
+                {video.title}
+                <br />
+                <span class="text-knc-red text-sm">Página {video.page}</span>
+              </a>
+            </li>
+          </>
+        ))
+      }
+
+      <li id="no-match" class="hidden p-4 text-lg text-neutral-500">
+        🤔 No se encontron resultados
+      </li>
+    </ul>
+  </section>
+</Layout>
+
+<style>
+  input,
+  span {
+    font-family:
+      "Inter Variable",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      "Open Sans",
+      "Helvetica Neue",
+      sans-serif;
+  }
+</style>
+
+<script>
+  const searchForm = document.querySelector("#search-form") as HTMLFormElement;
+  const noMatch = document.querySelector("#no-match") as HTMLLIElement;
+
+  searchForm.querySelector("input")!.addEventListener("keyup", (ev) => {
+    ev.preventDefault();
+
+    const searchValue = searchForm.querySelector("input")!.value;
+    const searchTerm = searchValue.toLowerCase().replaceAll(" ", "-");
+    const items = document.querySelectorAll(
+      "li.search-item"
+    ) as NodeListOf<HTMLLIElement>;
+
+    items.forEach((item) => {
+      const [_, id] = item.getAttribute("id")!.split("_");
+      if (id.includes(searchTerm)) item.classList.remove("hidden");
+      else item.classList.add("hidden");
+    });
+
+    const noMatches = Array.from(items).every((item) =>
+      item.classList.contains("hidden")
+    );
+
+    if (noMatches) noMatch.classList.remove("hidden");
+    else noMatch.classList.add("hidden");
+  });
+</script>

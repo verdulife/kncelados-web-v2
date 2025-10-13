@@ -1,0 +1,18 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import VideoHeader from "@/components/VideoHeader.astro";
+import { shorts } from "@/lib/utils";
+---
+
+<Layout
+  title="KNC Shorts"
+  description="Y cuando nos da la vida y la gana, hacemos cortos, y como somos muy creativos los llamamos KNC Shorts. No es KN coches, pero por algo se empieza."
+>
+  {
+    shorts.map((short) => (
+      <div class="flex h-screen items-center">
+        <VideoHeader data={short} />
+      </div>
+    ))
+  }
+</Layout>

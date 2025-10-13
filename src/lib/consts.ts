@@ -1,0 +1,1 @@
+export const STORE_URL = "https://kncelados.myshopify.com";

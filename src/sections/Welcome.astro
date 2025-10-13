@@ -1,0 +1,42 @@
+---
+import FullLogo from "@/assets/FullLogo.astro";
+import PlayIcon from "@/assets/PlayIcon.astro";
+import { generateSlug, lastEpisode } from "@/lib/utils";
+
+const slug = generateSlug(lastEpisode.title);
+const lastEpisode_url = `podcast/${slug}`;
+---
+
+<section
+  id="logo-mask"
+  class="fixed flex h-svh w-full flex-col items-center justify-center gap-8"
+>
+  <picture
+    id="hero-bg"
+    class="fixed inset-0 size-full bg-[url(/kncelados-hero.webp)] bg-cover bg-center"
+  >
+  </picture>
+
+  <FullLogo class="fixed h-42" />
+
+  <a
+    id="play-button"
+    href={lastEpisode_url}
+    class="bg-knc-red fixed mt-72 flex items-center justify-center gap-2 rounded-full px-8 py-4 transition-transform duration-500 hover:scale-110"
+  >
+    <PlayIcon class="size-4" />
+    <p>Ver último episodio</p>
+    <div class="absolute size-full scale-[0.65] border bg-knc-red/40 border-knc-red rounded-full animate-[ping_4s_infinite] -z-10"></div>
+    <div class="absolute size-full scale-[0.7] border bg-knc-red/20 border-knc-red rounded-full animate-[ping_4s_infinite] [animation-delay:1s] -z-10"></div>
+  </a>
+</section>
+
+<style>
+  #logo-mask {
+    background-color: transparent;
+    mask-image: url("/emptied-logo.svg");
+    mask-repeat: no-repeat;
+    mask-position: center 25%;
+    mask-size: 1500vh;
+  }
+</style>

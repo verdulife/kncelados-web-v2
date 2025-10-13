@@ -1,11 +1,10 @@
 ---
-import Animation from "@/components/Animation.astro";
 import "@/styles/global.css";
 import { ClientRouter } from "astro:transitions";
 
-/* import Navbar from "@/components/Navbar.astro";
+import Navbar from "@/components/Navbar.astro";
 import Footer from "@/components/Footer.astro";
-import KeepScrolling from "@/components/KeepScrolling.astro"; */
+import KeepScrolling from "@/components/KeepScrolling.astro";
 
 const { title, description, image } = Astro.props;
 ---
@@ -99,21 +98,20 @@ const { title, description, image } = Astro.props;
   <body
     class="bg-knc-dark flex min-h-svh flex-col overflow-x-clip bg-[url(/outline-logo.svg)] [background-size:5%_5%] bg-fixed bg-center overflow-y-clip bg-no-repeat text-gray-50"
   >
-    <Animation />
     <div
       id="container"
       class="flex w-full flex-1 flex-col overflow-clip opacity-0"
     >
-      <!-- <Navbar /> -->
+      <Navbar />
       <slot />
-      <!-- <KeepScrolling /> -->
+      <KeepScrolling />
       <!-- <Footer /> -->
     </div>
   </body>
 </html>
 
 <script>
-  /* import { gsap } from "gsap";
+  import { gsap } from "gsap";
 
   function startAnimation() {
     gsap.to("body", {
@@ -138,9 +136,5 @@ const { title, description, image } = Astro.props;
     });
   }
 
-  window.addEventListener("load", startAnimation); */
-  const container = document.querySelector("#container") as HTMLElement;
-  setTimeout(() => {
-    container.classList.add("opacity-100");
-  }, 2000);
+  window.addEventListener("load", startAnimation);
 </script>

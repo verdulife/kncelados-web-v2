@@ -1,0 +1,24 @@
+---
+import { seasons, getCurrentEpisode, extras } from "@/lib/utils";
+
+import Layout from "@/layouts/Layout.astro";
+import VideoHeader from "@/components/VideoHeader.astro";
+import VideoSlider from "@/components/VideoSlider.astro";
+
+const { slug } = Astro.params;
+if (!slug) return;
+
+const current_episode = getCurrentEpisode(slug);
+---
+
+<Layout
+  title={current_episode && current_episode.title}
+  description={current_episode && current_episode.description}
+  image={current_episode && current_episode.image}
+>
+  <div class="pb-10">
+    <VideoHeader data={current_episode} />
+    {seasons.map((season) => <VideoSlider data={season} />)}
+    <VideoSlider data={extras} title="Especiales" />
+  </div>
+</Layout>
