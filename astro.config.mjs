@@ -25,5 +25,5 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [sitemap(), partytown(pt_opts)]
+  integrations: [sitemap({ customPages }), partytown(pt_opts)]
 });

@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Recoleta";
+  font-weight: normal;
+  font-style: normal;
+  src: url("/fonts/recoleta.woff2") format("woff2");
+  font-display: swap;
+}
+
 @theme {
   --color-knc-red: #e3321f;
   --color-knc-blue: #0f1e30;
@@ -28,12 +36,4 @@ h4,
 h5,
 h6 {
   @apply text-balance;
-}
-
-@font-face {
-  font-family: "Recoleta";
-  font-weight: normal;
-  font-style: normal;
-  src: url("/fonts/recoleta.woff2") format("woff2");
-  font-display: swap;
 }

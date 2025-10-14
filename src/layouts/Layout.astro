@@ -1,4 +1,5 @@
 ---
+import "@fontsource-variable/inter";
 import "@/styles/global.css";
 import { ClientRouter } from "astro:transitions";
 
@@ -96,45 +97,11 @@ const { title, description, image } = Astro.props;
   <!-- Google tag (gtag.js) -->
 
   <body
-    class="bg-knc-dark flex min-h-svh flex-col overflow-x-clip bg-[url(/outline-logo.svg)] [background-size:5%_5%] bg-fixed bg-center overflow-y-clip bg-no-repeat text-gray-50"
+    class="bg-knc-dark flex min-h-svh flex-col overflow-x-clip bg-[url(/outline-logo.svg)] [background-size:5%_5%] bg-fixed bg-center bg-no-repeat text-gray-50"
   >
-    <div
-      id="container"
-      class="flex w-full flex-1 flex-col overflow-clip opacity-0"
-    >
-      <Navbar />
-      <slot />
-      <KeepScrolling />
-      <!-- <Footer /> -->
-    </div>
+    <Navbar />
+    <slot />
+    <KeepScrolling />
+    <!-- <Footer /> -->
   </body>
 </html>
-
-<script>
-  import { gsap } from "gsap";
-
-  function startAnimation() {
-    gsap.to("body", {
-      overflowY: "auto",
-      delay: 0.5,
-      duration: 1,
-    });
-
-    gsap.to("#container", {
-      opacity: 1,
-      duration: 2,
-      ease: "power2.out",
-      delay: 0.5,
-    });
-
-    gsap.to("#hero-bg", {
-      scale: 1.25,
-      opacity: 1,
-      duration: 1,
-      ease: "power2.out",
-      delay: 0.5,
-    });
-  }
-
-  window.addEventListener("load", startAnimation);
-</script>

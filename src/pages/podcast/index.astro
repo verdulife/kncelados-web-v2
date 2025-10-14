@@ -4,18 +4,13 @@ import VideoSlider from "@/components/VideoSlider.astro";
 import Layout from "@/layouts/Layout.astro";
 
 import { lastEpisode, seasons, extras } from "@/lib/utils";
-import { getCollection } from "astro:content";
-
-const episodes = await getCollection("episodes");
-
-console.log(episodes);
 ---
 
 <Layout
   title="Podcast"
   description="Si te preguntas dónde ver el podcast de Kncelados, estás en el lugar adecuado. Tanto en esta página web, como en nuestro canal de YouTube encontrarás todos los episodios."
 >
-  <div class="pb-10">
+  <div class="flex flex-col pb-10">
     <VideoHeader data={lastEpisode} />
     {seasons.map((season) => <VideoSlider data={season} />)}
     <VideoSlider data={extras} title="Especiales" />
