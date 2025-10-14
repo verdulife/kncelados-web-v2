@@ -11,51 +11,72 @@ const hidden_slug = generateSlug(hiddenEpisode.title);
   <link rel="preload" href={image} as="image" />
 </Fragment>
 
-<section class="flex w-full flex-col items-center px-12">
+<section class="flex w-full flex-col items-center">
   <article
-    class="relative flex w-full aspect-[21/9] flex-col items-center justify-end mt-24"
+    class="relative flex w-full aspect-[21/9] flex-col items-center justify-end px-12 mt-24"
   >
     <img
       class="absolute inset-0 size-full rounded-2xl object-cover blur-3xl"
       src={image}
       alt={title}
     />
-    <img
-      class="absolute inset-0 size-full rounded-2xl object-cover"
-      src={image}
-      alt={title}
-    />
-    <div class="absolute inset-0 size-full rounded-2xl bg-gradient-to-r from-black/60 from-15% to-black/0"></div>
 
-    <div
-      class:list={[
-        "z-10 flex flex-col w-full justify-end p-8",
-        pathname === "/shorts" ? "my-12" : "mt-32",
-      ]}
-    >
-      <h1 class="max-w-3xl text-4xl capitalize lg:text-7xl font-title">
-        {name ? name.toLowerCase() : title}
-      </h1>
+    <div class="absolute inset-0 atropos header-atropos size-full">
+      <div class="atropos-scale">
+        <div class="atropos-rotate">
+          <div class="atropos-inner">
+            <img
+              class="absolute inset-0 -z-10 size-full rounded-2xl object-cover border border-white/10"
+              src={image}
+              alt={title}
+            />
 
-      <div class="mt-4 flex lg:mt-10">
-        <a
-          href={`/player/${id}`}
-          class="bg-knc-red rounded-xl px-8 py-3 transition-transform hover:scale-110"
-        >
-          Ver aquí
-        </a>
+            <div
+              class="absolute inset-0 -z-10 size-full rounded-2xl bg-gradient-to-r from-black/60 from-15% to-black/0"
+            >
+            </div>
 
-        <a
-          href={url}
-          target="_blank"
-          class="px-8 py-3 transition-transform hover:scale-110"
-        >
-          Ver en YouTube
-        </a>
+            <div class="absolute bottom-0 left-0 z-10 flex flex-col p-8">
+              <h1 class="max-w-3xl text-4xl capitalize lg:text-7xl font-title">
+                {name ? name.toLowerCase() : title}
+              </h1>
+
+              <div class="mt-4 flex lg:mt-10">
+                <a
+                  href={`/player/${id}`}
+                  class="bg-knc-red rounded-xl px-8 py-3 transition-transform hover:scale-110"
+                >
+                  Ver aquí
+                </a>
+
+                <a
+                  href={url}
+                  target="_blank"
+                  class="px-8 py-3 transition-transform hover:scale-110"
+                >
+                  Ver en YouTube
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </article>
 </section>
+
+<script>
+  import "atropos/css";
+  import { Atropos } from "atropos";
+
+  Atropos({
+    el: ".header-atropos",
+    rotateXMax: 1.5,
+    rotateYMax: 1.5,
+    alwaysActive: true,
+    activeOffset: 0,
+  });
+</script>
 
 <script define:vars={{ hidden_slug }} is:inline>
   window.addEventListener("keydown", (ev) => {
