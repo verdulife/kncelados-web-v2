@@ -1,7 +1,5 @@
 ---
 import VideoCard from "@/components/VideoCard.astro";
-import Prev from "@/assets/Prev.astro";
-import Next from "@/assets/Next.astro";
 import type { Episode } from "@/lib/types";
 
 const { data, title } = Astro.props;
@@ -9,50 +7,50 @@ const episodes = data.filter((episode: Episode) => !episode.hidden);
 const current_season = episodes[0].season;
 ---
 
-<section class="relative flex w-full flex-col pt-4 lg:pt-8">
-  <h2 class="px-6 text-xl lg:px-20 lg:text-3xl">
+<section class="relative flex w-full flex-col pt-4 lg:pt-8 gap-4">
+  <h2 class="px-12 text-xl lg:text-3xl">
     {title || `Temporada ${current_season}`}
   </h2>
 
   <div
-    class="slider snap flex h-44 w-full snap-x snap-mandatory scroll-p-6 items-center gap-1 overflow-x-auto lg:h-72 lg:scroll-p-20"
+    class="slider snap flex w-full snap-x snap-mandatory items-center gap-2 overflow-x-auto scroll-p-12 py-4"
   >
     <div class="shrink-0 snap-start">
-      <div class="w-6 shrink-0 lg:w-20"></div>
+      <div class="shrink-0 w-10"></div>
     </div>
 
     {episodes.map((episode: Episode) => <VideoCard data={episode} />)}
 
     <div class="shrink-0 snap-end">
-      <div class="w-6 shrink-0 lg:w-20"></div>
+      <div class="shrink-0 w-10"></div>
     </div>
-
-    <button
-      class="prev absolute left-0 z-10 hidden h-full bg-linear-to-b from-transparent via-black/30 to-transparent lg:inline [&>svg]:hover:scale-110"
-    >
-      <Prev class="w-20 transition-transform" />
-    </button>
-
-    <button
-      class="next absolute right-0 z-10 hidden h-full bg-linear-to-b from-transparent via-black/30 to-transparent lg:inline [&>svg]:hover:scale-110"
-    >
-      <Next class="w-20 transition-transform" />
-    </button>
   </div>
 </section>
 
 <script>
   function init_slider() {
-    const sliders = document.querySelectorAll(".slider");
-
-    if (!sliders) return;
+    const sliders = document.querySelectorAll(
+      ".slider"
+    ) as NodeListOf<HTMLElement>;
 
     sliders.forEach((slider) => {
-      const slide = slider.querySelector("article");
-      const prev = slider.querySelector(".prev");
-      const next = slider.querySelector(".next");
+      const slide = slider.querySelector("article") as HTMLElement;
+      const prev = slider.querySelector(".prev") as HTMLElement;
+      const next = slider.querySelector(".next") as HTMLElement;
+      const cards = slider.querySelectorAll(".card") as NodeListOf<HTMLElement>;
 
-      if (!slide || !prev || !next) return;
+      cards[0].classList.add("active");
+
+      slider.addEventListener("scroll", () => {
+        cards.forEach((card) => {
+          const { left } = card.getBoundingClientRect();
+          if (left > 46 && left < 50) {
+            card.classList.add("active");
+          } else {
+            card.classList.remove("active");
+          }
+        });
+      });
 
       prev.addEventListener("click", () => {
         slider.scrollBy({
