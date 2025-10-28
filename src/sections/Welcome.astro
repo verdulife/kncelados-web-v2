@@ -19,50 +19,84 @@ const lastEpisode_url = `podcast/${slug}`;
     <LineBottom class="absolute top-3/4 left-1/2 w-full -z-10" />
   </div>
 
-  <div class="atropos my-atropos">
-    <div class="atropos-scale">
-      <div class="atropos-rotate">
-        <div class="atropos-inner">
-          <h1
-            class="text-9xl inline-flex items-center drop-shadow-xl drop-shadow-knc-dark"
-          >
-            F<span class="text-knc-red">*</span>CK M<span class="text-knc-red"
-              >[</span
-            ><img
-              class="w-56 object-contain scale-125 drop-shadow-xl drop-shadow-knc-dark"
-              src="/verdu-draw.webp"
-              alt="verdu"
-            /><span class="text-knc-red">]</span>NDAYS
-          </h1>
-        </div>
-      </div>
-    </div>
-  </div>
+  <h1
+    class="text-9xl inline-flex py-12 items-center drop-shadow-xl drop-shadow-knc-dark"
+  >
+    F
+    <span class="text-knc-red">*</span>
+    CK M
+    <span class="text-knc-red">[</span>
+    <img
+      class="spanner-in spanner-out object-contain h-64 w-56 scale-125 drop-shadow-xl drop-shadow-knc-dark"
+      src="/verdu-draw.webp"
+      alt="verdu"
+    />
+    <span class="text-knc-red">]</span>
+    NDAYS
+  </h1>
 
   <a
     id="podcast-btn"
     class="fixed bottom-10 right-10 rotate-3 hover:scale-110 transition-transform active:scale-100 inline-flex bg-neutral-200 rounded-xl px-6 py-4 items-center gap-1.5 text-knc-dark text-xs"
-    href={lastEpisode_url}><PlayIcon class="size-4" />VER EL PODCAST</a
+    href={lastEpisode_url}
   >
+    <PlayIcon class="size-4" />VER EL PODCAST
+  </a>
 </section>
 
 <style>
   #podcast-btn {
     corner-shape: squircle;
   }
+
+  .spanner-in {
+    animation: spannerIn 3s ease-out both infinite;
+  }
+
+  @keyframes spannerIn {
+    from {
+      width: 0;
+      opacity: 0;
+    }
+
+    10% {
+      width: 224px;
+      opacity: 0;
+    }
+
+    20% {
+      width: 224px;
+      opacity: 1;
+    }
+
+    90% {
+      width: 224px;
+      opacity: 1;
+    }
+
+    to {
+      width: 0;
+      opacity: 0;
+    }
+  }
 </style>
 
 <script>
-  import "atropos/css";
-  import Atropos from "atropos";
+  const h1 = document.querySelector("h1") as HTMLHeadingElement;
+  const titleImg = h1.querySelector("img") as HTMLImageElement;
 
-  Atropos({
-    el: ".my-atropos",
-    eventsEl: "#welcome",
-    alwaysActive: true,
-    highlight: false,
-    shadow: false,
-    activeOffset: 7.5,
-    rotateYMax: 7.5,
-  });
+  const images = [
+    "/verdu-draw.webp",
+    "/jose-draw.webp",
+    "/dani-draw.webp",
+    "/ander-draw.webp",
+    "/rup-draw.webp",
+  ];
+
+  let currentImageIndex = 0;
+
+  setInterval(() => {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    titleImg.src = images[currentImageIndex];
+  }, 2950);
 </script>
