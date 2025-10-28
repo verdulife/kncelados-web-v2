@@ -1,11 +1,7 @@
 ---
-import "@fontsource-variable/inter";
 import "@/styles/global.css";
 import { ClientRouter } from "astro:transitions";
-
-import Navbar from "@/components/Navbar.astro";
-import Footer from "@/components/Footer.astro";
-import KeepScrolling from "@/components/KeepScrolling.astro";
+import Header from "@/components/Header.astro";
 
 const { title, description, image } = Astro.props;
 ---
@@ -26,7 +22,6 @@ const { title, description, image } = Astro.props;
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Kncelados" />
     <link rel="apple-touch-icon" type="image/png" href="/mobile.png" />
-    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ClientRouter />
     <meta name="author" content="verdu | verdu@live.com" />
@@ -77,13 +72,12 @@ const { title, description, image } = Astro.props;
       crossorigin="anonymous"
       is:inline></script>
 
-    <!-- <script>
-      import "@justinribeiro/lite-youtube";
-    </script> -->
     <script
       type="text/partytown"
       src="https://www.googletagmanager.com/gtag/js?id=G-486FS251TB"
-      is:inline></script><script type="text/partytown" is:inline>
+      is:inline></script>
+
+    <script type="text/partytown" is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -94,14 +88,10 @@ const { title, description, image } = Astro.props;
     </script>
   </head>
 
-  <!-- Google tag (gtag.js) -->
-
   <body
-    class="bg-knc-dark flex min-h-svh flex-col overflow-x-clip bg-[url(/outline-logo.svg)] [background-size:5%_5%] bg-fixed bg-center bg-no-repeat text-gray-50"
+    class="bg-knc-dark flex min-h-svh flex-col overflow-x-clip bg-[url(/outline-logo.svg)] [background-size:5%_5%] bg-fixed bg-center bg-no-repeat text-gray-200"
   >
-    <Navbar />
+    <Header />
     <slot />
-    <KeepScrolling />
-    <!-- <Footer /> -->
   </body>
 </html>

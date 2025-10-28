@@ -1,20 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Boldonse&display=swap");
 @import "tailwindcss";
-
-@font-face {
-  font-family: "Recoleta";
-  font-weight: normal;
-  font-style: normal;
-  src: url("/fonts/recoleta.woff2") format("woff2");
-  font-display: swap;
-}
 
 @theme {
   --color-knc-red: #e3321f;
   --color-knc-blue: #0f1e30;
   --color-knc-dark: #070a0c;
 
-  --font-sans: "Inter Variable", sans-serif;
-  --font-title: "Recoleta", sans-serif;
+  --font-sans: "Boldonse", sans-serif;
+
+  --animate-fadedown: fadeDown 0.5s ease-in-out forwards;
+  --animate-fadeleft: fadeLeft 0.5s ease-in-out forwards;
+  --animate-faderight: fadeRight 0.5s ease-in-out forwards;
 }
 
 :root {
@@ -36,4 +32,41 @@ h4,
 h5,
 h6 {
   @apply text-balance;
+}
+
+@keyframes fadeDown {
+  50% {
+    transform: translateY(-50%);
+  }
+  from,
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeLeft {
+  50% {
+    transform: translateX(-100%);
+  }
+  from,
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  50% {
+    transform: translateX(100%);
+  }
+  from,
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes draw {
+  20%,
+  80% {
+    stroke-dashoffset: 0;
+  }
 }
