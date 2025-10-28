@@ -2,13 +2,15 @@
 import EmptiedLogo from "@/assets/EmptiedLogo.astro";
 ---
 
-<header class="fixed top-0 left-0 z-40 flex w-full justify-between p-10">
+<header
+  class="fixed top-0 left-0 z-40 flex w-full justify-between py-8 px-6 lg:py-10 lg:px-8"
+>
   <a
-    class="inline-flex text-xl gap-2 -rotate-3 items-center hover:scale-110 transition-transform active:scale-100"
+    class="inline-flex lg:text-xl gap-2 -rotate-3 items-center hover:scale-110 transition-transform active:scale-100"
     href="/"
   >
     <span class="text-knc-red">
-      <EmptiedLogo class="size-10" />
+      <EmptiedLogo class="size-7 lg:size-10" />
     </span>
 
     KNCELADOS
@@ -17,8 +19,8 @@ import EmptiedLogo from "@/assets/EmptiedLogo.astro";
   <button
     class="cursor-pointer inline-flex gap-0.5 rotate-3 transition-transform hover:[&_p]:animate-fadedown hover:[&_span:first-of-type]:animate-fadeleft hover:[&_span:last-of-type]:animate-faderight"
   >
-    <span class="text-knc-red">[</span>
-    <p class="text-lg">MENU</p>
-    <span class="text-knc-red">]</span>
+    <span class="text-xs lg:text-base text-knc-red">[</span>
+    <p class="text-sm lg:text-lg">MENU</p>
+    <span class="text-sm lg:text-lg text-knc-red">]</span>
   </button>
 </header>
