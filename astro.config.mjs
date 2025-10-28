@@ -1,10 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { extras, episodes, generateSlug, shorts } from "./src/lib/utils";
 
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import partytown from '@astrojs/partytown';
-import { extras, episodes, generateSlug, shorts } from "./src/lib/utils";
+import netlify from "@astrojs/netlify";
+
+
 
 const BASE_URL = "https://www.kncelados.com";
 const episodesPages = episodes.map(({ title }) => `${BASE_URL}/podcast/${generateSlug(title)}`);
@@ -21,9 +24,11 @@ const pt_opts = {
 export default defineConfig({
   site: BASE_URL,
   output: "server",
+
   vite: {
     plugins: [tailwindcss()]
   },
 
-  integrations: [sitemap({ customPages }), partytown(pt_opts)]
+  integrations: [sitemap({ customPages }), partytown(pt_opts)],
+  adapter: netlify()
 });
